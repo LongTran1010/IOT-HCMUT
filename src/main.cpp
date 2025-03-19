@@ -46,7 +46,6 @@ void connectWiFi(){
   }
 }
 
-void reconnectMQTT(){
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     if (client.connect("ESP32_Client", access_token, NULL)) {
