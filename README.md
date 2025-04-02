@@ -1,2 +1,3 @@
-Lab 3 IOT
-OTA firmware update
+Lab 3
+- OTA firmware update
+  
