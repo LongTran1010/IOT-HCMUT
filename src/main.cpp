@@ -17,11 +17,11 @@ const int mqtt_port = 1883;
 const char* mqtt_topic_pub = "home/sensors/dht";
 const char* mqtt_topic_sub = "home/actuators/led";
 
-// Khai báo chân và loại cảm biến DHT
+
 void performOTA(String firmware_url);
 void checkForUpdates(String fw_version, String fw_url);
 
-#define DHTTYPE DHT22 // Loại cảm biến là DHT11
+#define DHTTYPE DHT22 // Loại cảm biến là DHT22
 #define DHTPIN 26    // Chân DATA của DHT11 nối với GPIO 26
 DHT dht(DHTPIN, DHTTYPE); // Khởi tạo đối tượng DHT
 
@@ -82,7 +82,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Received MQTT message: ");
   Serial.println(message);
 
-  // Parse JSON
   DynamicJsonDocument doc(512);
   DeserializationError error = deserializeJson(doc, message.c_str());
 
@@ -96,7 +95,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     Serial.print("JSON Parse Error: ");
     Serial.println(error.c_str());
   }
-  // if (!error) { //doc.containsKey("led")
+  //Đây là phần mở rộng cho phiên bản 1.0.1, thêm tính năng bật/tắt LED
+  // if (!error) { if(doc.containsKey("led")){
   //   bool ledState = doc["led"];
   //   digitalWrite(LED_PIN, ledState ? HIGH : LOW);
   //   Serial.print("LED State: ");
