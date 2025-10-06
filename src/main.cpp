@@ -8,8 +8,8 @@
 
 
 //Config
-const char* ssid = "Thai Dung";
-const char* password = "123456789";
+const char* ssid = "Iphone 2";
+const char* password = "12345789";
 const char* coreiot_server = "app.coreiot.io";
 const char* access_token = "longthangtran456";
 
@@ -46,6 +46,7 @@ void connectWiFi(){
   }
 }
 
+void reconnectMQTT(){
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     if (client.connect("ESP32_Client", access_token, NULL)) {
